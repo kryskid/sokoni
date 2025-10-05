@@ -1,0 +1,2790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Krys - Community Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c5aa0;
+            --primary-dark: #1e3d72;
+            --secondary: #f8b500;
+            --secondary-dark: #d89c00;
+            --accent: #e74c3c;
+            --light: #f9f9f9;
+            --dark: #333333;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border: #dee2e6;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --chat-user: #e3f2fd;
+            --chat-other: #f1f1f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            font-size: 1.05rem;
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .call-button, .email-button {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .email-button {
+            background: var(--success);
+            color: white;
+        }
+        
+        .call-button:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .email-button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--dark);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cta-button.secondary {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .cta-button.secondary:hover {
+            background: var(--secondary-dark);
+        }
+        
+        /* Phone Animation Section */
+        .phone-animation {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .animation-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .animation-content {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .animation-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .animation-content p {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .phone-animation-area {
+            flex: 1;
+            position: relative;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .phone {
+            width: 200px;
+            height: 400px;
+            background: #333;
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .phone-screen {
+            width: 180px;
+            height: 380px;
+            background: white;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .phone-notch {
+            width: 100px;
+            height: 20px;
+            background: #333;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 10px 10px;
+            z-index: 3;
+        }
+        
+        .screen-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: transform 0.5s ease;
+            background: white;
+        }
+        
+        .app-screen.active {
+            transform: translateX(0);
+        }
+        
+        .app-screen.hidden {
+            transform: translateX(100%);
+        }
+        
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .app-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .app-description {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .app-button {
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .app-button:hover {
+            background: var(--secondary-dark);
+        }
+        
+        .floating-phone {
+            position: absolute;
+            width: 150px;
+            height: 300px;
+            background: #444;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+        
+        .floating-phone-1 {
+            top: 50px;
+            left: 50px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-phone-2 {
+            bottom: 50px;
+            right: 50px;
+            animation: float 6s ease-in-out infinite 2s;
+        }
+        
+        .floating-phone-3 {
+            top: 100px;
+            right: 100px;
+            animation: float 7s ease-in-out infinite 1s;
+        }
+        
+        .floating-phone-screen {
+            width: 135px;
+            height: 285px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-image-placeholder {
+            font-size: 3rem;
+            color: var(--gray);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .product-description {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .action-button {
+            flex: 1;
+            padding: 8px;
+            background: var(--light-gray);
+            color: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .action-button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .buy-button:hover {
+            background: var(--primary-dark);
+        }
+        
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+        
+        .status-pending {
+            background: var(--warning);
+            color: var(--dark);
+        }
+        
+        .status-verified {
+            background: var(--success);
+            color: white;
+        }
+        
+        /* Chat Room Section */
+        .chat-room {
+            padding: 80px 0;
+            background-color: var(--light);
+            display: none;
+        }
+        
+        .chat-container {
+            display: flex;
+            height: 600px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .chat-sidebar {
+            width: 300px;
+            background: var(--light-gray);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .chat-users {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .chat-user {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-user:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .chat-user.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 70%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            position: relative;
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            background: var(--chat-user);
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message.other {
+            align-self: flex-start;
+            background: var(--chat-other);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message-sender {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .message-text {
+            margin-bottom: 5px;
+        }
+        
+        .message-time {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-align: right;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--border);
+            background: white;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            outline: none;
+        }
+        
+        .chat-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 0 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input button:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+        }
+        
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 20px 0;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-info {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .phone-number, .email-address {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .call-direct, .email-direct {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .call-direct {
+            background: var(--success);
+        }
+        
+        .email-direct {
+            background: var(--primary);
+        }
+        
+        .call-direct:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .email-direct:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .verification-warning {
+            color: var(--accent);
+            font-weight: 700;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 1.1rem;
+            padding: 10px;
+            background: #ffeaea;
+            border-radius: 5px;
+        }
+        
+        /* Admin Section */
+        .admin-section {
+            padding: 80px 0;
+            display: none;
+        }
+        
+        .admin-login {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .admin-panel {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--dark);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.2);
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .btn-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        
+        .admin-products {
+            margin-top: 40px;
+        }
+        
+        .admin-product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+        
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .admin-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .admin-tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .admin-tab-content {
+            display: none;
+        }
+        
+        .admin-tab-content.active {
+            display: block;
+        }
+        
+        .pending-badge {
+            background: var(--warning);
+            color: var(--dark);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .verified-badge {
+            background: var(--success);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        /* Comments Section */
+        .comments-section {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .comment-form {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .comments-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .comment {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .comment-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .comment-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .like-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .like-button {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .like-button:hover {
+            color: var(--accent);
+        }
+        
+        .liked {
+            color: var(--accent);
+        }
+        
+        /* User Registration */
+        .user-registration {
+            padding: 80px 0;
+            display: none;
+        }
+        
+        .registration-form {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .username-display {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* AI Chatbot */
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            max-height: 500px;
+        }
+        
+        .chatbot-header {
+            background: var(--primary);
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-title {
+            font-weight: 700;
+            color: white;
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chatbot-messages {
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+            max-height: 350px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        
+        .bot-message {
+            background: var(--light-gray);
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background: #e3f2fd;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--dark);
+        }
+        
+        .chatbot-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+        
+        .chatbot-toggle i {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 40px 0 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-contact-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        
+        .footer-contact-button {
+            display: inline-block;
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-contact-button:hover {
+            background: var(--primary-dark);
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .header-buttons {
+                margin-top: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .animation-container {
+                flex-direction: column;
+            }
+            
+            .animation-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            
+            .phone-animation-area {
+                height: 300px;
+            }
+            
+            .floating-phone {
+                display: none;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .chatbot {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+            }
+            
+            .admin-product-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .admin-product-actions {
+                display: flex;
+                gap: 10px;
+                width: 100%;
+            }
+            
+            .admin-product-actions .btn {
+                flex: 1;
+            }
+            
+            .chat-container {
+                flex-direction: column;
+                height: 80vh;
+            }
+            
+            .chat-sidebar {
+                width: 100%;
+                height: 200px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo">Buy Krys</div>
+                    <div class="tagline">Community Marketplace</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-section="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-section="products">Marketplace</a></li>
+                        <li><a href="#" class="nav-link" data-section="add-product">Sell Item</a></li>
+                        <li><a href="#" class="nav-link" data-section="chat-room">Chat Room</a></li>
+                        <li><a href="#" id="my-box-link">My Box Box Box</a></li>
+                        <li><a href="#" id="user-profile">My Account</a></li>
+                        <li><a href="#" id="cart-button">Cart (<span id="cart-count">0</span>)</a></li>
+                    </ul>
+                </nav>
+                <div class="header-buttons">
+                    <a href="tel:0706260002" class="call-button">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="mailto:krissxav5@gmail.com" class="email-button">
+                        <i class="fas fa-envelope"></i> Email Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home-section">
+        <div class="container">
+            <h1>Welcome to Buy Krys Marketplace</h1>
+            <p>Your trusted community marketplace for buying and selling quality items. Join thousands of satisfied customers today.</p>
+            <div class="hero-buttons">
+                <button class="cta-button" data-section="products">Start Shopping</button>
+                <a href="mailto:krissxav5@gmail.com" class="cta-button secondary">
+                    <i class="fas fa-envelope"></i> Contact via Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phone Animation Section -->
+    <section class="phone-animation">
+        <div class="animation-container">
+            <div class="animation-content">
+                <h2>Buy & Sell With Just Your Phone</h2>
+                <p>Our marketplace is designed for mobile-first shopping. Browse products, make purchases, and manage your sales all from the palm of your hand.</p>
+                <p>Join our community of mobile shoppers and experience the future of e-commerce today!</p>
+                <button class="cta-button" data-section="add-product">Start Selling Now</button>
+            </div>
+            <div class="phone-animation-area">
+                <div class="phone">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="screen-content">
+                            <div class="app-screen active" id="screen-1">
+                                <div class="app-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h3 class="app-title">Browse Products</h3>
+                                <p class="app-description">Discover amazing deals from local sellers</p>
+                                <button class="app-button">Explore</button>
+                            </div>
+                            <div class="app-screen hidden" id="screen-2">
+                                <div class="app-icon" style="background: var(--success);">
+                                    <i class="fas fa-tags"></i>
+                                </div>
+                                <h3 class="app-title">Sell Items</h3>
+                                <p class="app-description">List your products in minutes</p>
+                                <button class="app-button">Sell Now</button>
+                            </div>
+                            <div class="app-screen hidden" id="screen-3">
+                                <div class="app-icon" style="background: var(--accent);">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h3 class="app-title">Chat & Connect</h3>
+                                <p class="app-description">Message sellers directly</p>
+                                <button class="app-button">Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-phone floating-phone-1">
+                    <div class="floating-phone-screen">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="floating-phone floating-phone-2">
+                    <div class="floating-phone-screen">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div class="floating-phone floating-phone-3">
+                    <div class="floating-phone-screen">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products-section">
+        <div class="container">
+            <h2 class="section-title">Verified Products</h2>
+            <div class="product-grid" id="product-grid">
+                <!-- Verified products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Product Section -->
+    <section class="user-registration" id="add-product-section">
+        <div class="container">
+            <h2 class="section-title">Sell Your Item</h2>
+            <div class="registration-form">
+                <div class="form-group">
+                    <label for="product-name">Product Name</label>
+                    <input type="text" id="product-name" class="form-control" placeholder="Enter product name">
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Price (KSH)</label>
+                    <input type="number" id="product-price" class="form-control" placeholder="Enter price">
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" class="form-control" rows="3" placeholder="Enter product description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Product Image (URL)</label>
+                    <input type="text" id="product-image" class="form-control" placeholder="Paste image URL here">
+                    <small style="color: var(--gray); margin-top: 5px; display: block;">You can upload your image to services like Imgur and paste the URL here</small>
+                </div>
+                <button class="btn" id="submit-product">Submit Product for Verification</button>
+                <div id="product-submission-message" style="margin-top: 15px; text-align: center;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Room Section -->
+    <section class="chat-room" id="chat-room-section">
+        <div class="container">
+            <h2 class="section-title">Community Chat Room</h2>
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <div class="chat-header">
+                        <h3>Online Users</h3>
+                    </div>
+                    <div class="chat-users" id="chat-users">
+                        <!-- Users will be dynamically added here -->
+                    </div>
+                </div>
+                <div class="chat-main">
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Messages will be dynamically added here -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chat-input" placeholder="Type your message here...">
+                        <button id="send-chat-message">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Registration -->
+    <section class="user-registration" id="user-registration-section">
+        <div class="container">
+            <h2 class="section-title">Join Our Community</h2>
+            <div class="registration-form">
+                <div class="form-group">
+                    <label for="user-phone">Your Phone Number</label>
+                    <input type="text" id="user-phone" class="form-control" placeholder="Enter your phone number">
+                </div>
+                <div class="username-display" id="username-display">
+                    Your username will appear here
+                </div>
+                <button class="btn" id="generate-username">Generate Username</button>
+                <button class="btn" id="register-user" style="display: none;">Complete Registration</button>
+                <div id="registration-message" style="margin-top: 15px; text-align: center;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Box Box Box (Admin Section) -->
+    <section class="admin-section" id="admin-section">
+        <div class="container">
+            <h2 class="section-title">My Box Box Box</h2>
+            
+            <div class="admin-login" id="admin-login">
+                <h3>Admin Authentication</h3>
+                <div class="form-group">
+                    <label for="admin-username">Username</label>
+                    <input type="text" id="admin-username" class="form-control" placeholder="Enter admin username">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" class="form-control" placeholder="Enter admin password">
+                </div>
+                <button class="btn" id="admin-login-btn">Access My Box Box Box</button>
+                <div id="admin-login-message" style="margin-top: 15px; text-align: center;"></div>
+            </div>
+            
+            <div class="admin-panel" id="admin-panel" style="display: none;">
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="pending">Pending Verification</button>
+                    <button class="admin-tab" data-tab="verified">Verified Products</button>
+                    <button class="admin-tab" data-tab="all">All Products</button>
+                    <button class="admin-tab" data-tab="upload">Upload Products</button>
+                </div>
+                
+                <div class="admin-tab-content active" id="pending-tab">
+                    <h3>Products Pending Verification</h3>
+                    <div id="admin-pending-list">
+                        <!-- Pending products will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="admin-tab-content" id="verified-tab">
+                    <h3>Verified Products</h3>
+                    <div id="admin-verified-list">
+                        <!-- Verified products will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="admin-tab-content" id="all-tab">
+                    <h3>All Products</h3>
+                    <div id="admin-all-list">
+                        <!-- All products will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="admin-tab-content" id="upload-tab">
+                    <h3>Upload New Product</h3>
+                    <div class="registration-form">
+                        <div class="form-group">
+                            <label for="admin-product-name">Product Name</label>
+                            <input type="text" id="admin-product-name" class="form-control" placeholder="Enter product name">
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-product-price">Price (KSH)</label>
+                            <input type="number" id="admin-product-price" class="form-control" placeholder="Enter price">
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-product-description">Description</label>
+                            <textarea id="admin-product-description" class="form-control" rows="3" placeholder="Enter product description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-product-image">Product Image (URL)</label>
+                            <input type="text" id="admin-product-image" class="form-control" placeholder="Paste image URL here">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">You can upload your image to services like Imgur and paste the URL here</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-product-seller">Seller Name</label>
+                            <input type="text" id="admin-product-seller" class="form-control" placeholder="Enter seller name">
+                        </div>
+                        <button class="btn" id="admin-submit-product">Upload Product</button>
+                        <div id="admin-product-submission-message" style="margin-top: 15px; text-align: center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <button class="close-button" id="close-cart">&times;</button>
+            <h2>Your Cart</h2>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <div class="verification-warning">
+                IMPORTANT: Payment should not be done without verification!
+            </div>
+            <div class="contact-info">
+                <p>To complete your purchase, contact us at:</p>
+                <div class="phone-number">0706260002 or 0701705615</div>
+                <div class="email-address">krissxav5@gmail.com</div>
+                <div class="contact-buttons">
+                    <a href="tel:0706260002" class="call-direct">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="mailto:krissxav5@gmail.com" class="email-direct">
+                        <i class="fas fa-envelope"></i> Email Now
+                    </a>
+                </div>
+                <p style="margin-top: 15px;">We will call you to verify your order and provide payment instructions.</p>
+            </div>
+            <button class="btn" id="clear-cart">Clear Cart</button>
+        </div>
+    </div>
+
+    <!-- Product Comments Modal -->
+    <div class="modal" id="comments-modal">
+        <div class="modal-content">
+            <button class="close-button" id="close-comments">&times;</button>
+            <h2 id="comments-product-title">Product Comments</h2>
+            <div class="comments-section" id="modal-comments-section">
+                <div class="comment-form">
+                    <div class="form-group">
+                        <label for="comment-text">Your Comment</label>
+                        <textarea id="comment-text" class="form-control" rows="3" placeholder="Type your comment here"></textarea>
+                    </div>
+                    <button class="btn" id="submit-comment">Post Comment</button>
+                </div>
+                <div class="comments-list" id="modal-comments-list">
+                    <!-- Comments will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">
+            <div class="chatbot-title">Krys Assistant</div>
+            <button class="chatbot-close" id="close-chatbot">&times;</button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">
+                Hello! I'm Krys Assistant. How can I help you with our marketplace today?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Type your question here...">
+            <button id="send-message">Send</button>
+        </div>
+    </div>
+    
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Buy Krys</h3>
+                    <p>Your trusted community marketplace for buying and selling quality items with verification for safety.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Phone: 0706260002 / 0701705615</p>
+                    <p>Email: krissxav5@gmail.com</p>
+                    <p>Location: Nairobi, Kenya</p>
+                    <div class="footer-contact-buttons">
+                        <a href="tel:0706260002" class="footer-contact-button">
+                            <i class="fas fa-phone"></i> Call
+                        </a>
+                        <a href="mailto:krissxav5@gmail.com" class="footer-contact-button">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#" data-section="home">Home</a></p>
+                    <p><a href="#" data-section="products">Marketplace</a></p>
+                    <p><a href="#" data-section="add-product">Sell Item</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Buy Krys Marketplace. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Database simulation
+        let products = JSON.parse(localStorage.getItem('products')) || [
+            { 
+                id: 1, 
+                name: "Wireless Headphones", 
+                price: 4500, 
+                description: "High-quality wireless headphones with noise cancellation and long battery life.", 
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                verified: true,
+                seller: "tech_guru",
+                likes: 12,
+                comments: [
+                    { id: 1, user: "audio_lover", text: "The sound quality is amazing!", date: "2023-10-15", likes: 3 },
+                    { id: 2, user: "music_fan", text: "How long does the battery last?", date: "2023-10-16", likes: 1 }
+                ]
+            },
+            { 
+                id: 2, 
+                name: "Smart Watch", 
+                price: 7500, 
+                description: "Feature-rich smartwatch with health tracking and notifications.", 
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                verified: true,
+                seller: "gadget_king",
+                likes: 8,
+                comments: [
+                    { id: 1, user: "fitness_fanatic", text: "Love the health tracking features!", date: "2023-10-10", likes: 2 }
+                ]
+            },
+            { 
+                id: 3, 
+                name: "Portable Solar Charger", 
+                price: 3200, 
+                description: "Charge your devices anywhere with this efficient solar charger.", 
+                image: "https://images.unsplash.com/photo-1609592810793-abeb6c64b5c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                verified: true,
+                seller: "eco_warrior",
+                likes: 5,
+                comments: []
+            }
+        ];
+
+        let pendingProducts = JSON.parse(localStorage.getItem('pendingProducts')) || [];
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentProductId = null;
+        let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+
+        // Admin credentials
+        const ADMIN_USERNAME = "kryskid";
+        const ADMIN_PASSWORD = "Krysmart7!";
+
+        // DOM elements
+        const productGrid = document.getElementById('product-grid');
+        const cartCount = document.getElementById('cart-count');
+        const cartModal = document.getElementById('cart-modal');
+        const cartItems = document.getElementById('cart-items');
+        const closeCart = document.getElementById('close-cart');
+        const clearCartBtn = document.getElementById('clear-cart');
+        const cartButton = document.getElementById('cart-button');
+        const adminPendingList = document.getElementById('admin-pending-list');
+        const adminVerifiedList = document.getElementById('admin-verified-list');
+        const adminAllList = document.getElementById('admin-all-list');
+        const adminLogin = document.getElementById('admin-login');
+        const adminPanel = document.getElementById('admin-panel');
+        const adminLoginBtn = document.getElementById('admin-login-btn');
+        const adminLoginMessage = document.getElementById('admin-login-message');
+        const submitProductBtn = document.getElementById('submit-product');
+        const productSubmissionMessage = document.getElementById('product-submission-message');
+        const userRegistrationSection = document.getElementById('user-registration-section');
+        const generateUsernameBtn = document.getElementById('generate-username');
+        const registerUserBtn = document.getElementById('register-user');
+        const usernameDisplay = document.getElementById('username-display');
+        const registrationMessage = document.getElementById('registration-message');
+        const userProfileBtn = document.getElementById('user-profile');
+        const myBoxLink = document.getElementById('my-box-link');
+        const commentsModal = document.getElementById('comments-modal');
+        const closeComments = document.getElementById('close-comments');
+        const modalCommentsList = document.getElementById('modal-comments-list');
+        const submitCommentBtn = document.getElementById('submit-comment');
+        const commentsProductTitle = document.getElementById('comments-product-title');
+        const chatbot = document.getElementById('chatbot');
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const closeChatbot = document.getElementById('close-chatbot');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const sendMessageBtn = document.getElementById('send-message');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section, .hero');
+        const adminTabs = document.querySelectorAll('.admin-tab');
+        const adminTabContents = document.querySelectorAll('.admin-tab-content');
+        const chatUsers = document.getElementById('chat-users');
+        const chatMessagesContainer = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendChatMessageBtn = document.getElementById('send-chat-message');
+        const adminSubmitProductBtn = document.getElementById('admin-submit-product');
+        const adminProductSubmissionMessage = document.getElementById('admin-product-submission-message');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            updateCartCount();
+            setupEventListeners();
+            startPhoneAnimation();
+            renderChatRoom();
+            
+            // Check if user is registered
+            if (!currentUser) {
+                userRegistrationSection.style.display = 'block';
+            }
+        });
+
+        // Phone animation
+        function startPhoneAnimation() {
+            const screens = document.querySelectorAll('.app-screen');
+            let currentScreen = 0;
+            
+            setInterval(() => {
+                screens[currentScreen].classList.remove('active');
+                screens[currentScreen].classList.add('hidden');
+                
+                currentScreen = (currentScreen + 1) % screens.length;
+                
+                screens[currentScreen].classList.remove('hidden');
+                screens[currentScreen].classList.add('active');
+            }, 3000);
+        }
+
+        // Render products on the products page
+        function renderProducts() {
+            productGrid.innerHTML = '';
+            const verifiedProducts = products.filter(product => product.verified);
+            
+            if (verifiedProducts.length === 0) {
+                productGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; font-size: 1.2rem;">No verified products available yet. Check back soon or <a href="#" data-section="add-product" style="color: var(--primary);">add a product</a>!</p>';
+                return;
+            }
+            
+            verifiedProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        ${product.image ? 
+                            `<img src="${product.image}" alt="${product.name}">` : 
+                            `<div class="product-image-placeholder"><i class="fas fa-box"></i></div>`
+                        }
+                        <div class="status-badge status-verified">Verified</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">KSH ${product.price.toLocaleString()}</div>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-meta">
+                            <span>Seller: ${product.seller}</span>
+                            <span><i class="fas fa-heart"></i> ${product.likes}</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-button like-product" data-id="${product.id}">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="action-button view-comments" data-id="${product.id}">
+                                <i class="fas fa-comment"></i> Comments
+                            </button>
+                        </div>
+                        <button class="buy-button" data-id="${product.id}">Buy Now</button>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+            
+            // Add event listeners to buttons
+            document.querySelectorAll('.buy-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+            
+            document.querySelectorAll('.like-product').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    likeProduct(productId);
+                });
+            });
+            
+            document.querySelectorAll('.view-comments').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    showComments(productId);
+                });
+            });
+        }
+
+        // Render products in admin panel
+        function renderAdminProducts() {
+            // Pending products
+            adminPendingList.innerHTML = '';
+            const pendingProductsList = pendingProducts.filter(product => !product.verified);
+            
+            if (pendingProductsList.length === 0) {
+                adminPendingList.innerHTML = '<p>No products pending verification.</p>';
+            } else {
+                pendingProductsList.forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'admin-product-item';
+                    productItem.innerHTML = `
+                        <div>
+                            <h4>${product.name}</h4>
+                            <p>KSH ${product.price.toLocaleString()}</p>
+                            <p>${product.description}</p>
+                            <p>Seller: ${product.seller}</p>
+                            <span class="pending-badge">Pending Verification</span>
+                        </div>
+                        <div class="admin-product-actions">
+                            <button class="btn verify-product" data-id="${product.id}">Verify</button>
+                            <button class="btn btn-danger reject-product" data-id="${product.id}">Reject</button>
+                        </div>
+                    `;
+                    adminPendingList.appendChild(productItem);
+                });
+            }
+            
+            // Verified products
+            adminVerifiedList.innerHTML = '';
+            const verifiedProductsList = products.filter(product => product.verified);
+            
+            if (verifiedProductsList.length === 0) {
+                adminVerifiedList.innerHTML = '<p>No verified products yet.</p>';
+            } else {
+                verifiedProductsList.forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'admin-product-item';
+                    productItem.innerHTML = `
+                        <div>
+                            <h4>${product.name}</h4>
+                            <p>KSH ${product.price.toLocaleString()}</p>
+                            <p>${product.description}</p>
+                            <p>Seller: ${product.seller}</p>
+                            <span class="verified-badge">Verified</span>
+                        </div>
+                        <div class="admin-product-actions">
+                            <button class="btn btn-warning unverify-product" data-id="${product.id}">Unverify</button>
+                            <button class="btn btn-danger delete-product" data-id="${product.id}">Delete</button>
+                        </div>
+                    `;
+                    adminVerifiedList.appendChild(productItem);
+                });
+            }
+            
+            // All products
+            adminAllList.innerHTML = '';
+            const allProductsList = [...products, ...pendingProducts];
+            
+            if (allProductsList.length === 0) {
+                adminAllList.innerHTML = '<p>No products in the system.</p>';
+            } else {
+                allProductsList.forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'admin-product-item';
+                    productItem.innerHTML = `
+                        <div>
+                            <h4>${product.name}</h4>
+                            <p>KSH ${product.price.toLocaleString()}</p>
+                            <p>${product.description}</p>
+                            <p>Seller: ${product.seller}</p>
+                            <span class="${product.verified ? 'verified-badge' : 'pending-badge'}">${product.verified ? 'Verified' : 'Pending'}</span>
+                        </div>
+                        <div class="admin-product-actions">
+                            ${!product.verified ? 
+                                `<button class="btn verify-product" data-id="${product.id}">Verify</button>` : 
+                                `<button class="btn btn-warning unverify-product" data-id="${product.id}">Unverify</button>`
+                            }
+                            <button class="btn btn-danger delete-product" data-id="${product.id}">Delete</button>
+                        </div>
+                    `;
+                    adminAllList.appendChild(productItem);
+                });
+            }
+            
+            // Add event listeners to admin buttons
+            document.querySelectorAll('.verify-product').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    verifyProduct(productId);
+                });
+            });
+            
+            document.querySelectorAll('.reject-product').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    rejectProduct(productId);
+                });
+            });
+            
+            document.querySelectorAll('.unverify-product').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    unverifyProduct(productId);
+                });
+            });
+            
+            document.querySelectorAll('.delete-product').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    deleteProduct(productId);
+                });
+            });
+        }
+
+        // Render chat room
+        function renderChatRoom() {
+            // Render users
+            chatUsers.innerHTML = '';
+            users.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.className = 'chat-user';
+                userElement.innerHTML = `
+                    <div class="user-avatar">${user.username.charAt(0).toUpperCase()}</div>
+                    <div>
+                        <div class="user-name">${user.username}</div>
+                        <div class="user-status">Online</div>
+                    </div>
+                `;
+                chatUsers.appendChild(userElement);
+            });
+            
+            // Render messages
+            chatMessagesContainer.innerHTML = '';
+            chatMessages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${message.sender === (currentUser ? currentUser.username : 'Guest') ? 'user' : 'other'}`;
+                messageElement.innerHTML = `
+                    <div class="message-sender">${message.sender}</div>
+                    <div class="message-text">${message.text}</div>
+                    <div class="message-time">${message.time}</div>
+                `;
+                chatMessagesContainer.appendChild(messageElement);
+            });
+            
+            // Scroll to bottom of messages
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+        }
+
+        // Add product to cart
+        function addToCart(productId) {
+            if (!currentUser) {
+                showNotification('Please register first to add items to cart');
+                showSection('user-registration');
+                return;
+            }
+            
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        quantity: 1
+                    });
+                }
+                updateCartCount();
+                saveToLocalStorage();
+                showNotification(`${product.name} added to cart!`);
+            }
+        }
+
+        // Update cart count in header
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--primary);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                font-weight: 700;
+                z-index: 1001;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                transform: translateX(150%);
+                transition: transform 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(150%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Cart modal
+            cartButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                showCartModal();
+            });
+            
+            closeCart.addEventListener('click', function() {
+                cartModal.style.display = 'none';
+            });
+            
+            clearCartBtn.addEventListener('click', function() {
+                cart = [];
+                updateCartCount();
+                saveToLocalStorage();
+                showCartModal();
+                showNotification('Cart cleared!');
+            });
+            
+            // Admin login
+            adminLoginBtn.addEventListener('click', function() {
+                const username = document.getElementById('admin-username').value;
+                const password = document.getElementById('admin-password').value;
+                
+                if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                    adminLogin.style.display = 'none';
+                    adminPanel.style.display = 'block';
+                    renderAdminProducts();
+                    adminLoginMessage.innerHTML = '';
+                } else {
+                    adminLoginMessage.innerHTML = '<p style="color: var(--danger);">Invalid username or password!</p>';
+                }
+            });
+            
+            // My Box Box Box link
+            myBoxLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection('admin');
+            });
+            
+            // Admin tabs
+            adminTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    adminTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    adminTabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === `${tabId}-tab`) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Submit product (user)
+            submitProductBtn.addEventListener('click', function() {
+                if (!currentUser) {
+                    showNotification('Please register first to submit products');
+                    showSection('user-registration');
+                    return;
+                }
+                
+                const name = document.getElementById('product-name').value;
+                const price = parseFloat(document.getElementById('product-price').value);
+                const description = document.getElementById('product-description').value;
+                const image = document.getElementById('product-image').value;
+                
+                if (name && price && description) {
+                    const newProduct = {
+                        id: pendingProducts.length > 0 ? Math.max(...pendingProducts.map(p => p.id)) + 1 : 1,
+                        name: name,
+                        price: price,
+                        description: description,
+                        image: image || null,
+                        verified: false,
+                        seller: currentUser.username,
+                        likes: 0,
+                        comments: []
+                    };
+                    
+                    pendingProducts.push(newProduct);
+                    saveToLocalStorage();
+                    
+                    // Clear form
+                    document.getElementById('product-name').value = '';
+                    document.getElementById('product-price').value = '';
+                    document.getElementById('product-description').value = '';
+                    document.getElementById('product-image').value = '';
+                    
+                    productSubmissionMessage.innerHTML = '<p style="color: var(--success);">Product submitted successfully! It will appear after admin verification.</p>';
+                    
+                    setTimeout(() => {
+                        productSubmissionMessage.innerHTML = '';
+                    }, 5000);
+                } else {
+                    productSubmissionMessage.innerHTML = '<p style="color: var(--accent);">Please fill in all required fields</p>';
+                }
+            });
+            
+            // Submit product (admin)
+            adminSubmitProductBtn.addEventListener('click', function() {
+                const name = document.getElementById('admin-product-name').value;
+                const price = parseFloat(document.getElementById('admin-product-price').value);
+                const description = document.getElementById('admin-product-description').value;
+                const image = document.getElementById('admin-product-image').value;
+                const seller = document.getElementById('admin-product-seller').value;
+                
+                if (name && price && description && seller) {
+                    const newProduct = {
+                        id: products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1,
+                        name: name,
+                        price: price,
+                        description: description,
+                        image: image || null,
+                        verified: true,
+                        seller: seller,
+                        likes: 0,
+                        comments: []
+                    };
+                    
+                    products.push(newProduct);
+                    saveToLocalStorage();
+                    
+                    // Clear form
+                    document.getElementById('admin-product-name').value = '';
+                    document.getElementById('admin-product-price').value = '';
+                    document.getElementById('admin-product-description').value = '';
+                    document.getElementById('admin-product-image').value = '';
+                    document.getElementById('admin-product-seller').value = '';
+                    
+                    adminProductSubmissionMessage.innerHTML = '<p style="color: var(--success);">Product uploaded successfully!</p>';
+                    renderProducts();
+                    renderAdminProducts();
+                    
+                    setTimeout(() => {
+                        adminProductSubmissionMessage.innerHTML = '';
+                    }, 5000);
+                } else {
+                    adminProductSubmissionMessage.innerHTML = '<p style="color: var(--accent);">Please fill in all required fields</p>';
+                }
+            });
+            
+            // User registration
+            generateUsernameBtn.addEventListener('click', function() {
+                const phone = document.getElementById('user-phone').value;
+                
+                if (!phone) {
+                    registrationMessage.innerHTML = '<p style="color: var(--accent);">Please enter your phone number first</p>';
+                    return;
+                }
+                
+                const username = generateUsername();
+                usernameDisplay.textContent = username;
+                generateUsernameBtn.style.display = 'none';
+                registerUserBtn.style.display = 'block';
+            });
+            
+            registerUserBtn.addEventListener('click', function() {
+                const phone = document.getElementById('user-phone').value;
+                const username = usernameDisplay.textContent;
+                
+                if (phone && username) {
+                    currentUser = {
+                        username: username,
+                        phone: phone
+                    };
+                    
+                    users.push(currentUser);
+                    saveToLocalStorage();
+                    
+                    registrationMessage.innerHTML = '<p style="color: var(--success);">Registration successful! You can now buy and sell items.</p>';
+                    userRegistrationSection.style.display = 'none';
+                    
+                    setTimeout(() => {
+                        registrationMessage.innerHTML = '';
+                    }, 5000);
+                }
+            });
+            
+            // User profile
+            userProfileBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentUser) {
+                    showNotification(`Logged in as ${currentUser.username}`);
+                } else {
+                    showSection('user-registration');
+                }
+            });
+            
+            // Comments
+            closeComments.addEventListener('click', function() {
+                commentsModal.style.display = 'none';
+            });
+            
+            submitCommentBtn.addEventListener('click', function() {
+                if (!currentUser) {
+                    showNotification('Please register first to comment');
+                    showSection('user-registration');
+                    return;
+                }
+                
+                const commentText = document.getElementById('comment-text').value;
+                
+                if (commentText && currentProductId) {
+                    const product = products.find(p => p.id === currentProductId);
+                    if (product) {
+                        const newComment = {
+                            id: product.comments.length > 0 ? Math.max(...product.comments.map(c => c.id)) + 1 : 1,
+                            user: currentUser.username,
+                            text: commentText,
+                            date: new Date().toISOString().split('T')[0],
+                            likes: 0
+                        };
+                        
+                        product.comments.push(newComment);
+                        saveToLocalStorage();
+                        
+                        document.getElementById('comment-text').value = '';
+                        showComments(currentProductId);
+                        showNotification('Comment posted!');
+                    }
+                }
+            });
+            
+            // Chat room
+            sendChatMessageBtn.addEventListener('click', sendChatMessage);
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendChatMessage();
+                }
+            });
+            
+            // Chatbot
+            chatbotToggle.addEventListener('click', function() {
+                chatbot.style.display = 'flex';
+            });
+            
+            closeChatbot.addEventListener('click', function() {
+                chatbot.style.display = 'none';
+            });
+            
+            sendMessageBtn.addEventListener('click', sendMessage);
+            chatbotInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === cartModal) {
+                    cartModal.style.display = 'none';
+                }
+                if (e.target === commentsModal) {
+                    commentsModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Send chat message
+        function sendChatMessage() {
+            if (!currentUser) {
+                showNotification('Please register first to use the chat room');
+                showSection('user-registration');
+                return;
+            }
+            
+            const messageText = chatInput.value.trim();
+            if (messageText === '') return;
+            
+            const newMessage = {
+                sender: currentUser.username,
+                text: messageText,
+                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            };
+            
+            chatMessages.push(newMessage);
+            saveToLocalStorage();
+            renderChatRoom();
+            
+            // Clear input
+            chatInput.value = '';
+        }
+
+        // Show cart modal
+        function showCartModal() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+            } else {
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>KSH ${item.price.toLocaleString()} x ${item.quantity}</p>
+                        </div>
+                        <div>
+                            <strong>KSH ${(item.price * item.quantity).toLocaleString()}</strong>
+                        </div>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const totalElement = document.createElement('div');
+                totalElement.className = 'cart-item';
+                totalElement.innerHTML = `
+                    <div><strong>Total</strong></div>
+                    <div><strong>KSH ${total.toLocaleString()}</strong></div>
+                `;
+                cartItems.appendChild(totalElement);
+            }
+            
+            cartModal.style.display = 'flex';
+        }
+
+        // Show specific section
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            document.getElementById('admin-section').style.display = 'none';
+            document.getElementById('user-registration-section').style.display = 'none';
+            document.getElementById('add-product-section').style.display = 'none';
+            document.getElementById('chat-room-section').style.display = 'none';
+            
+            if (sectionId === 'home') {
+                document.getElementById('home-section').style.display = 'block';
+            } else if (sectionId === 'products') {
+                document.getElementById('products-section').style.display = 'block';
+            } else if (sectionId === 'add-product') {
+                if (!currentUser) {
+                    showNotification('Please register first to sell items');
+                    showSection('user-registration');
+                } else {
+                    document.getElementById('add-product-section').style.display = 'block';
+                }
+            } else if (sectionId === 'chat-room') {
+                if (!currentUser) {
+                    showNotification('Please register first to use the chat room');
+                    showSection('user-registration');
+                } else {
+                    document.getElementById('chat-room-section').style.display = 'block';
+                }
+            } else if (sectionId === 'admin') {
+                document.getElementById('admin-section').style.display = 'block';
+            }
+        }
+
+        // Like a product
+        function likeProduct(productId) {
+            if (!currentUser) {
+                showNotification('Please register first to like products');
+                showSection('user-registration');
+                return;
+            }
+            
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                product.likes += 1;
+                saveToLocalStorage();
+                renderProducts();
+                showNotification('Product liked!');
+            }
+        }
+
+        // Show comments for a product
+        function showComments(productId) {
+            currentProductId = productId;
+            const product = products.find(p => p.id === productId);
+            
+            if (product) {
+                commentsProductTitle.textContent = `Comments for ${product.name}`;
+                modalCommentsList.innerHTML = '';
+                
+                if (product.comments.length === 0) {
+                    modalCommentsList.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
+                } else {
+                    product.comments.forEach(comment => {
+                        const commentElement = document.createElement('div');
+                        commentElement.className = 'comment';
+                        commentElement.innerHTML = `
+                            <div class="comment-header">
+                                <div class="comment-author">${comment.user}</div>
+                                <div class="comment-date">${comment.date}</div>
+                            </div>
+                            <div class="comment-text">${comment.text}</div>
+                            <div class="like-section">
+                                <button class="like-button ${comment.likes > 0 ? 'liked' : ''}" data-comment-id="${comment.id}" data-product-id="${productId}">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <span>${comment.likes} likes</span>
+                            </div>
+                        `;
+                        modalCommentsList.appendChild(commentElement);
+                    });
+                    
+                    // Add event listeners to comment like buttons
+                    document.querySelectorAll('.like-button').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const commentId = parseInt(this.getAttribute('data-comment-id'));
+                            const productId = parseInt(this.getAttribute('data-product-id'));
+                            likeComment(productId, commentId);
+                        });
+                    });
+                }
+                
+                commentsModal.style.display = 'flex';
+            }
+        }
+
+        // Like a comment
+        function likeComment(productId, commentId) {
+            if (!currentUser) {
+                showNotification('Please register first to like comments');
+                showSection('user-registration');
+                return;
+            }
+            
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const comment = product.comments.find(c => c.id === commentId);
+                if (comment) {
+                    comment.likes += 1;
+                    saveToLocalStorage();
+                    showComments(productId);
+                    showNotification('Comment liked!');
+                }
+            }
+        }
+
+        // Verify a product (admin function)
+        function verifyProduct(productId) {
+            // Check if product is in pending products
+            let productIndex = pendingProducts.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                const product = pendingProducts[productIndex];
+                product.verified = true;
+                products.push(product);
+                pendingProducts.splice(productIndex, 1);
+                saveToLocalStorage();
+                renderAdminProducts();
+                renderProducts();
+                showNotification('Product verified and published!');
+                return;
+            }
+            
+            // Check if product is in products but unverified
+            productIndex = products.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                products[productIndex].verified = true;
+                saveToLocalStorage();
+                renderAdminProducts();
+                renderProducts();
+                showNotification('Product verified!');
+            }
+        }
+
+        // Reject a product (admin function)
+        function rejectProduct(productId) {
+            const productIndex = pendingProducts.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                pendingProducts.splice(productIndex, 1);
+                saveToLocalStorage();
+                renderAdminProducts();
+                showNotification('Product rejected!');
+            }
+        }
+
+        // Unverify a product (admin function)
+        function unverifyProduct(productId) {
+            const productIndex = products.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                products[productIndex].verified = false;
+                saveToLocalStorage();
+                renderAdminProducts();
+                renderProducts();
+                showNotification('Product unverified!');
+            }
+        }
+
+        // Delete a product (admin function)
+        function deleteProduct(productId) {
+            // Check in products
+            let productIndex = products.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                products.splice(productIndex, 1);
+                saveToLocalStorage();
+                renderAdminProducts();
+                renderProducts();
+                showNotification('Product deleted!');
+                return;
+            }
+            
+            // Check in pending products
+            productIndex = pendingProducts.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                pendingProducts.splice(productIndex, 1);
+                saveToLocalStorage();
+                renderAdminProducts();
+                showNotification('Product deleted!');
+            }
+        }
+
+        // Generate random username
+        function generateUsername() {
+            const adjectives = ['Happy', 'Clever', 'Swift', 'Bright', 'Brave', 'Calm', 'Eager', 'Gentle', 'Jolly', 'Kind'];
+            const nouns = ['Trader', 'Seller', 'Buyer', 'Explorer', 'Shopper', 'Collector', 'Dealer', 'Merchant', 'Vendor', 'Customer'];
+            
+            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const noun = nouns[Math.floor(Math.random() * nouns.length)];
+            const num = Math.floor(Math.random() * 1000);
+            
+            return `${adj}${noun}${num}`;
+        }
+
+        // Save data to local storage
+        function saveToLocalStorage() {
+            localStorage.setItem('products', JSON.stringify(products));
+            localStorage.setItem('pendingProducts', JSON.stringify(pendingProducts));
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+        }
+
+        // Chatbot functions
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = message;
+            chatbotMessages.appendChild(userMessage);
+            
+            // Clear input
+            chatbotInput.value = '';
+            
+            // Scroll to bottom
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            
+            // Generate bot response
+            setTimeout(() => {
+                const botResponse = generateBotResponse(message);
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot-message';
+                botMessage.textContent = botResponse;
+                chatbotMessages.appendChild(botMessage);
+                
+                // Scroll to bottom
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }, 1000);
+        }
+
+        function generateBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                return "Hello! I'm Krys Assistant. How can I help you with our marketplace today?";
+            } else if (lowerMessage.includes('product') || lowerMessage.includes('buy')) {
+                return "You can browse our marketplace to see all available products. Click on any product to view details and add to cart.";
+            } else if (lowerMessage.includes('sell') || lowerMessage.includes('add product')) {
+                return "To sell an item, go to the 'Sell Item' section. You'll need to register first if you haven't already. All products require admin verification before appearing in the marketplace.";
+            } else if (lowerMessage.includes('verify') || lowerMessage.includes('verification')) {
+                return "All products go through an admin verification process to ensure quality and safety. This usually takes 24-48 hours. You'll be notified when your product is approved.";
+            } else if (lowerMessage.includes('payment') || lowerMessage.includes('pay')) {
+                return "For security, all payments require verification. Add items to your cart, then contact us at 0706260002 or 0701705615 to complete your purchase. We'll call you to verify the order.";
+            } else if (lowerMessage.includes('contact') || lowerMessage.includes('phone') || lowerMessage.includes('email')) {
+                return "You can contact us at 0706260002 or 0701705615, or email krissxav5@gmail.com. We're here to help!";
+            } else if (lowerMessage.includes('register') || lowerMessage.includes('sign up')) {
+                return "To register, go to the 'My Account' section. You'll need to provide your phone number and we'll generate a unique username for you.";
+            } else if (lowerMessage.includes('admin')) {
+                return "Admin access is restricted. If you're the admin, use the correct credentials to access the admin panel.";
+            } else if (lowerMessage.includes('chat')) {
+                return "We have a community chat room where you can connect with other users. Just go to the 'Chat Room' section to join the conversation!";
+            } else {
+                return "I'm not sure I understand. You can ask me about buying products, selling items, registration, payments, or contact information.";
+            }
+        }
+
+        // Show home section by default
+        showSection('home');
+    </script>
+</body>
+</html>
